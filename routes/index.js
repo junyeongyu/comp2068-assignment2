@@ -8,7 +8,7 @@ let User = require('../models/user');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
-    title: 'COMP2068',
+    title: 'Classified Ad',
     user: req.user
   });
 });

@@ -55,7 +55,7 @@ passport.use(User.createStrategy());
 passport.use(new FacebookStrategy({
     clientID: config.facebook.clientID,
     clientSecret: config.facebook.clientSecret,
-    callbackURL: config.facebook.callbackURL,
+    callbackURL: config.facebook[app.get('env') === 'development' ? 'callbackURLDev' : 'callbackURL'],
     profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {

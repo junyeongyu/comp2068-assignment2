@@ -3,6 +3,7 @@ module.exports = {
     facebook: {
     	clientID: '670670809797414',
     	clientSecret: '75a2d602dab852f03125468362906a22',
-    	callbackURL: 'http://localhost:3000/facebook/callback'
+    	callbackURL: 'http://app.junyeongyu.com/facebook/callback',
+    	callbackURLDev: 'http://localhost:3000/facebook/callback'
     }
 };

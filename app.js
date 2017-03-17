@@ -72,8 +72,7 @@ passport.use(new TwitterStrategy({
     callbackURL: config.twitter.callbackURL
   },
   function(token, tokenSecret, profile, cb) {
-	console.log(profile)
-    User.findOrCreate({ username: profile.id }, function (err, user) {
+	User.findOrCreate({ username: profile.username }, function (err, user) {
       return cb(err, user);
     });
   }

@@ -9,8 +9,8 @@ let bodyParser = require('body-parser');
 // passport dependencies
 let passport = require('passport');
 let session = require('express-session');
-let localStrategy = require('passport-local').Strategy;
 let FacebookStrategy = require('passport-facebook').Strategy;
+let TwitterStrategy = require('passport-twitter').Strategy;
 
 let app = express();
 
@@ -62,6 +62,20 @@ passport.use(new FacebookStrategy({
 	User.findOrCreate({ username: profile.emails[0].value }, function (err, user) {
 	  return cb(err, user);
 	});
+  }
+));
+
+// twitter auth
+passport.use(new TwitterStrategy({
+    consumerKey: config.twitter.consumerKey,
+    consumerSecret: config.twitter.consumerSecret,
+    callbackURL: config.twitter.callbackURL
+  },
+  function(token, tokenSecret, profile, cb) {
+	console.log(profile)
+    User.findOrCreate({ username: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
   }
 ));
 

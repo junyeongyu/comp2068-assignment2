@@ -1,25 +1,46 @@
 <% include ./partials/header.ejs %>
-<main class="container">
-    <h1>Register</h1>
-
-    <form method="post">
-        <div class="form-group">
-            <label for="username" class="col-sm-2 control-label">Email: *</label>
-            <input name="username" id="username" required type="email" />
-        </div>
-        <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">Password: *</label>
-            <input name="password" id="password" type="password" required />
-        </div>
-        <div class="form-group">
-            <label for="confirm" class="col-sm-2 control-label">Confirm: *</label>
-            <input name="confirm" id="confirm" type="password" required />
-        </div>
-        <div class="form-group">
-            <button class="btn btn-success col-sm-offset-2">Register</button>
-            <hr />
-            Already have an account?  <a href="/login" title="Login">Login</a>
-        </div>
-    </form>
-</main>
+  <section id="main-content">
+      <section class="wrapper">
+          <div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa fa-bars"></i> Register</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-home"></i><a href="/">Home</a></li>
+						<li><i class="fa fa-bars"></i>Register</li>
+					</ol>
+				</div>
+		  </div>
+		  <div class="row">
+		      <div class="col-lg-12">
+		          <section class="panel">
+		              <header class="panel-heading">
+		                 Register Information
+		              </header>
+                      <div class="panel-body">
+                          <form id="register-form" method="post">
+                              <div class="alert alert-danger trigger-register-message <% if (isError == false) { %>hide<%}%>">
+                                <% if (isError) { %>
+                                  <%= message %>
+                                <% } %>
+                              </div>
+                              <div class="form-group">
+                                  <label for="username">Username</label>
+                                  <input name="username" type="text" class="form-control" id="username" placeholder="Enter Username" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="password">Password</label>
+                                  <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="confirm">Confirm</label>
+                                  <input name="confirm" type="password" class="form-control" id="confirm" placeholder="Confirm Password" required>
+                              </div>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                      </div>		              
+		          </section>
+		      </div>
+		  </div>
+      </section>
+  </section>
 <% include ./partials/footer.ejs %>

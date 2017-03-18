@@ -17,8 +17,31 @@ router.get('/', function(req, res, next) {
 router.get('/register', function(req, res, next) {
   // load the register.ejs view
   res.render('register', {
-    title: 'Please Register',
-    user: null
+    user: null,
+    isError: false
+  });
+});
+
+/* POST register */
+router.post('/register', function(req, res, next) {
+  // use the Account model to create a new user account
+  User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
+    if (err) {
+      if (err.name) {
+        res.render('register', {
+          user: null,
+          isError: true,
+          name: err.name,
+          message: err.message
+        });
+        return;
+      }
+      
+      console.log(err);
+      res.render('error', {user: null, title: 'Create User Error', message: 'Registration Error', error: err});
+      return;
+    }
+    res.redirect('/login');
   });
 });
 
@@ -33,23 +56,11 @@ router.get('/login', function(req, res, next) {
   });
 });
 
-/* POST register */
-router.post('/register', function(req, res, next) {
-  // use the Account model to create a new user account
-  User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
-    if (err) {
-      console.log(err);
-      res.render('error', { title: 'Create User Error'});
-    }
-    res.redirect('/login');
-  });
-});
-
 /* POST login */
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
-  failureMessage: 'Invalid Login'
+  failureMessage: 'Username or password is incorrect'
 }));
 
 /* GET logout */

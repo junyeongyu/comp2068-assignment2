@@ -84,7 +84,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // route url
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
+app.use('/classifiedAds', require('./routes/classifiedAds'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -101,7 +101,19 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  renderError(req, res, err);
 });
+
+// Default error rendering
+function renderError(req, res, err) {
+  console.log(err);
+  res.render('error', {
+    title: 'Error Page',
+    user: req.user,
+    message: 'This page has unexpected error.',
+    error: err
+  });
+  return false;
+}
 
 module.exports = app;

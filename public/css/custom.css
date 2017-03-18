@@ -1,6 +1,5 @@
 
 /* common */
-
 .hide {display: none;}
 
 /* social buttons */
@@ -14,3 +13,6 @@ a.btn-register{color:#fff;}
 
 /* register */
 .btn--register-submit {width: 100%}
+
+/* classified ads */
+.btn-add-sales-item {margin-bottom: 20px;}

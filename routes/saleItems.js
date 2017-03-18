@@ -2,7 +2,7 @@
 let express = require('express');
 let router = express.Router();
 
-let ClassifiedAd = require('../models/classifiedAd');
+let SaleItem = require('../models/saleItem');
 
 // Authentication check
 function verifyLogin(req, res, next) {
@@ -24,91 +24,91 @@ function renderError(req, res, err) {
   return false;
 }
 
-/* GET Classified Ads main page */
+/* GET Items for Sale main page */
 router.get('/', function(req, res, next) {
-  ClassifiedAd.find(function(err, classifiedAds) {
+  SaleItem.find(function(err, saleItems) {
     if (err) {
       return renderError(req, res, err);
     }
-    res.render('classifiedAds/index', {
-      classifiedAds: classifiedAds,
-      title: 'Classified Ads',
+    res.render('saleItems/index', {
+      saleItems: saleItems,
+      title: 'Items for Sale',
       user: req.user
     });
   });
 });
 
-// GET /classifiedAds/add
+// GET /saleItems/add
 router.get('/add', verifyLogin,  function(req, res, next) {
 	console.log(req.user);
-   res.render('classifiedAds/add', {
+   res.render('saleItems/add', {
       title: 'Classified Ad Details',
       user: req.user
    });
 });
 
-// POST /classifiedAds/add
+// POST /saleItems/add
 router.post('/add', verifyLogin, function(req, res, next) {
-  ClassifiedAd.create({
+  SaleItem.create({
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,
     view: 0,
     username: req.body.username
-  }, function(err, classifiedAd) {
+  }, function(err, saleItem) {
     if (err) {
       return renderError(req, res, err);
     }
-    res.redirect('/classifiedAds');
+    res.redirect('/saleItems');
   });
 });
 
-// GET /classifiedAds/delete/_id
+// GET /saleItems/delete/_id
 router.get('/delete/:_id', verifyLogin, function(req, res, next) {
   let _id = req.params._id;
-  ClassifiedAd.remove({ _id: _id }, function(err) {
+  SaleItem.remove({ _id: _id }, function(err) {
     if (err) {
       return renderError(req, res, err);
     }
-    res.redirect('/classifiedAds');
+    res.redirect('/saleItems');
   });
 });
 
-// GET /classifiedAds/_id
+// GET /saleItems/_id
 router.get('/:_id', verifyLogin, function(req, res, next) {
    let _id = req.params._id;
-   ClassifiedAd.findById(_id, function(err, classifiedAd) {
+   SaleItem.findById(_id, function(err, saleItem) {
       if (err) {
         return renderError(req, res, err);
       }
-      res.render('classifiedAds/edit', {
-         classifiedAd: classifiedAd,
-         title: 'classifiedAd Details',
+      res.render('saleItems/edit', {
+         saleItem: saleItem,
+         title: 'saleItem Details',
          user: req.user
       });
    });
 });
 
-// POST /classifiedAds/_id - save the updated classifiedAd
+// POST /saleItems/_id - save the updated saleItem
 router.post('/:_id', verifyLogin, function(req, res, next) {
   let _id = req.params._id;
-  ClassifiedAd.findById(_id, function(err, classifiedAdParam) {
+  SaleItem.findById(_id, function(err, saleItemParam) {
     if (err) {
       return renderError(req, res, err);
     }
-    let classifiedAd = new ClassifiedAd({
+    let saleItem = new SaleItem({
       _id: _id,
       title: req.body.title,
       description: req.body.description,
       price: req.body.price,
-      view: classifiedAdParam.view + 1
+      view: saleItemParam.view + 1
     });
     
-    classifiedAd.update({ _id: _id }, classifiedAd,  function(err) {
+    saleItem.update({ _id: _id }, saleItem,  function(err) {
       if (err) {
         return renderError(req, res, err);
       }
-      res.redirect('/classifiedAds');
+      res.redirect('/saleItems');
     });
   });
 });

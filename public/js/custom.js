@@ -7,7 +7,7 @@ $(function () {
 		
 		if (password !== confirm) {
 			$('.trigger-register-message').removeClass('hide');
-			$('.trigger-register-message').html("Password and confirm fiels need to be identical.");
+			$('.trigger-register-message').html("Password and confirm fields need to be identical.");
 			return false;
 		}
 		

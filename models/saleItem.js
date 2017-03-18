@@ -3,7 +3,7 @@
 let mongoose = require('mongoose');
 
 // create classified ad schema (class)
-var classifiedAdSchema = new mongoose.Schema({
+var saleItemSchema = new mongoose.Schema({
     title: {
         type: String,
         required: 'Title is required'
@@ -28,4 +28,4 @@ var classifiedAdSchema = new mongoose.Schema({
 });
 
 // make it public
-module.exports = mongoose.model('ClassifiedAd', classifiedAdSchema);
+module.exports = mongoose.model('SaleItem', saleItemSchema);

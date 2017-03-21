@@ -15,4 +15,16 @@ $(function () {
 		
 		return true;
 	});
+	
+	// add/edit item for sale in saleItmes
+	$('.trigger-item-back').bind('click', function (event) {
+		history.back();
+	});
+	
+	// delete item from saleItems
+	$('.trigger-item-delete').bind('click', function (event) {
+		if (confirm('Are you sure to delete this item?')) {
+			location.href = $(this).data('href');
+		}
+	})
 });

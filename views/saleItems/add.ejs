@@ -21,41 +21,41 @@
                           </header>
                           <div class="panel-body">
                               <div class="form">
-                                  <form class="form-validate form-horizontal" id="feedback_form" method="get" action="">
+                                  <form class="form-validate form-horizontal" id="add_form" method="post">
                                       <div class="form-group ">
-                                          <label for="cname" class="control-label col-lg-2">Full Name <span class="required">*</span></label>
+                                          <label for="title" class="control-label col-lg-2">Title <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" id="cname" name="fullname" minlength="5" type="text" required />
+                                              <input class="form-control" id="title" name="title" minlength="5" type="text" required />
                                           </div>
                                       </div>
                                       <div class="form-group ">
-                                          <label for="cemail" class="control-label col-lg-2">E-Mail <span class="required">*</span></label>
+                                          <label for="description" class="control-label col-lg-2">Description <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control " id="cemail" type="email" name="email" required />
+                                              <input class="form-control " id="description" type="text" name="description" required />
                                           </div>
                                       </div>
                                       <div class="form-group ">
-                                          <label for="curl" class="control-label col-lg-2">Website</label>
+                                          <label for="price" class="control-label col-lg-2">Price <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control " id="curl" type="url" name="url" />
+                                              <input class="form-control" id="price" name="price" min="0.01" type="number" step="any" />
                                           </div>
                                       </div>
                                       <div class="form-group ">
-                                          <label for="cname" class="control-label col-lg-2">Subject <span class="required">*</span></label>
+                                          <label for="phone" class="control-label col-lg-2">Phone </label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" id="subject" name="subject" minlength="5" type="text" required />
+                                              <input class="form-control " id="phone" type="text" name="phone" />
                                           </div>
-                                      </div>                                      
+                                      </div>
                                       <div class="form-group ">
-                                          <label for="ccomment" class="control-label col-lg-2">Feedback</label>
+                                          <label for="address" class="control-label col-lg-2">Address </label>
                                           <div class="col-lg-10">
-                                              <textarea class="form-control " id="ccomment" name="comment" required></textarea>
+                                              <input class="form-control " id="address" type="text" name="address" />
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <div class="col-lg-offset-2 col-lg-10">
                                               <button class="btn btn-primary" type="submit">Add</button>
-                                              <button class="btn btn-default" type="button">Back</button>
+                                              <button class="btn btn-default trigger-item-back" type="button">Back</button>
                                           </div>
                                       </div>
                                   </form>

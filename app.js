@@ -21,6 +21,8 @@ let conn = mongoose.connection;
 //link to config file
 let config = require('./config/config');
 
+let moment = require('moment');
+
 // connect db using mongoose connection
 conn.open(config.db);
 
@@ -103,6 +105,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   renderError(req, res, err);
 });
+
+app.locals.moment = moment; // this makes moment available as a variable in every EJS page
+app.locals.shortDateFormat = 'YYYY-MM-DD';
 
 // Default error rendering
 function renderError(req, res, err) {

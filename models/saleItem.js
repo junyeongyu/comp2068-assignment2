@@ -17,13 +17,23 @@ var saleItemSchema = new mongoose.Schema({
         min: 0.01,
         required: 'Price is required'
     },
-    view: {
-        type: Number,
-        required: 'View count is required'
+    date: {
+        type: Date,
+        required: 'Date is required'
     },
     username: {// user login id
         type: String,
         required: 'Username is required'
+    },
+    phone: {
+        type: String
+    },
+    address: {
+        type: String
+    },
+    view: {
+        type: Number,
+        required: 'View count is required'
     }
 });
 

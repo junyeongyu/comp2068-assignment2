@@ -1,7 +1,6 @@
 "use strict";
 let express = require('express');
 let router = express.Router();
-
 let SaleItem = require('../models/saleItem');
 
 // Authentication check
@@ -26,7 +25,7 @@ function renderError(req, res, err) {
 
 /* GET Items for Sale main page */
 router.get('/', function(req, res, next) {
-  SaleItem.find(function(err, saleItems) {
+  SaleItem.find({}).sort({date: 'desc'}).exec(function(err, saleItems) {
     if (err) {
       return renderError(req, res, err);
     }
@@ -53,8 +52,11 @@ router.post('/add', verifyLogin, function(req, res, next) {
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,
-    view: 0,
-    username: req.body.username
+    date: new Date(),
+    username: req.user.username,
+    phone: req.body.phone,
+    address: req.body.address,
+    view: 0
   }, function(err, saleItem) {
     if (err) {
       return renderError(req, res, err);
@@ -101,6 +103,7 @@ router.post('/:_id', verifyLogin, function(req, res, next) {
       title: req.body.title,
       description: req.body.description,
       price: req.body.price,
+      date: new Date(),
       view: saleItemParam.view + 1
     });
     

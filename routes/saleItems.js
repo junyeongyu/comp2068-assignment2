@@ -76,6 +76,28 @@ router.get('/delete/:_id', verifyLogin, function(req, res, next) {
   });
 });
 
+//GET /saleItems/detail/_id --> Public page that can be approached by any user
+router.get('/detail/:_id', function(req, res, next) {
+   let _id = req.params._id;
+   SaleItem.findById(_id, function(err, saleItem) {
+      if (err) {
+        return renderError(req, res, err);
+      }
+      
+      saleItem.view = saleItem.view + 1;
+      saleItem.update(saleItem,  function(err) {
+        if (err) {
+          return renderError(req, res, err);
+        }
+        res.render('saleItems/detail', {
+            saleItem: saleItem,
+            title: 'SaleItem Details',
+            user: req.user
+        });
+      });
+   });
+});
+
 // GET /saleItems/_id
 router.get('/:_id', verifyLogin, function(req, res, next) {
    let _id = req.params._id;
@@ -85,7 +107,7 @@ router.get('/:_id', verifyLogin, function(req, res, next) {
       }
       res.render('saleItems/edit', {
          saleItem: saleItem,
-         title: 'saleItem Details',
+         title: 'SaleItem Edit',
          user: req.user
       });
    });
@@ -94,20 +116,18 @@ router.get('/:_id', verifyLogin, function(req, res, next) {
 // POST /saleItems/_id - save the updated saleItem
 router.post('/:_id', verifyLogin, function(req, res, next) {
   let _id = req.params._id;
-  SaleItem.findById(_id, function(err, saleItemParam) {
+  SaleItem.findById(_id, function(err, saleItem) {
     if (err) {
       return renderError(req, res, err);
     }
-    let saleItem = new SaleItem({
-      _id: _id,
-      title: req.body.title,
-      description: req.body.description,
-      price: req.body.price,
-      date: new Date(),
-      view: saleItemParam.view + 1
-    });
+    saleItem.title = req.body.title;
+    saleItem.description = req.body.description;
+    saleItem.price = req.body.price;
+    saleItem.date = new Date();
+    saleItem.phone = req.body.phone;
+    saleItem.address = req.body.address;
     
-    saleItem.update({ _id: _id }, saleItem,  function(err) {
+    saleItem.update(saleItem,  function(err) {
       if (err) {
         return renderError(req, res, err);
       }

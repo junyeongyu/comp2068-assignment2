@@ -23,7 +23,7 @@
                               <tr>
                                  <th><i class="icon_info"></i> Title</th>
                                  <th><i class="icon_calendar"></i> Date</th>
-                                 <th><i class="icon_usd"></i> Price</th>
+                                 <th><i class="icon_usd"></i> Price ($)</th>
                                  <th><i class="icon_mobile"></i> Phone</th>
                                  <th><i class="icon_pin_alt"></i> Address</th>
                                  <th><i class="icon_profile"></i> Username</th>
@@ -33,16 +33,16 @@
                                  <% } %>
                               </tr>
                               <% for (var i = 0; i < saleItems.length; i++) { %>
-                              <tr>
-                                 <td><%= saleItems[i].title %></td>
-                                 <td>
+                              <tr data-id="<%= saleItems[i]._id %>">
+                                 <td class="row"><%= saleItems[i].title %></td>
+                                 <td class="row">
                                     <%= moment(saleItems[i].date).format(shortDateFormat) %>
                                  </td>
-                                 <td><% if (saleItems[i].price) { %>$ <%= saleItems[i].price %><% } %></td>
-                                 <td><%= saleItems[i].phone %></td>
-                                 <td><%= saleItems[i].address %></td>
-                                 <td><%= saleItems[i].username %></td>
-                                 <td><%= saleItems[i].view %></td>
+                                 <td class="row"><%= saleItems[i].price %></td>
+                                 <td class="row"><%= saleItems[i].phone %></td>
+                                 <td class="row"><%= saleItems[i].address %></td>
+                                 <td class="row"><%= saleItems[i].username %></td>
+                                 <td class="row"><%= saleItems[i].view %></td>
                                  <% if (user) { %>
                                  <td>
                                  <div class="btn-group">

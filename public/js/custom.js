@@ -18,7 +18,7 @@ $(function () {
 	
 	// add/edit item for sale in saleItmes
 	$('.trigger-item-back').bind('click', function (event) {
-		history.back();
+		location.href = '/saleItems';
 	});
 	
 	// delete item from saleItems
@@ -26,5 +26,10 @@ $(function () {
 		if (confirm('Are you sure to delete this item?')) {
 			location.href = $(this).data('href');
 		}
-	})
+	});
+	
+	// click item in saleItems
+	$('.panel .row').bind('click', function (event) {
+		location.href = '/saleItems/detail/' + $(this).closest('tr').data('id');
+	});
 });

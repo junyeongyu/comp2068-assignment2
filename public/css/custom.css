@@ -16,3 +16,9 @@ a.btn-register{color:#fff;}
 
 /* classified ads */
 .btn-add-sales-item {margin-bottom: 20px;}
+.panel th, .panel td {
+  text-align: center;
+}
+.panel td.row {
+  cursor: pointer;
+}

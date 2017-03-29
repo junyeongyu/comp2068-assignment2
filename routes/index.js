@@ -18,7 +18,7 @@ router.get('/about', function(req, res, next) {
   // load the register.ejs view
   res.render('about', {
     title: 'Aboutr',
-    user: null,
+    user: req.user,
     isError: false
   });
 });

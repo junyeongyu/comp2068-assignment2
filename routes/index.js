@@ -13,6 +13,16 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* GET about */
+router.get('/about', function(req, res, next) {
+  // load the register.ejs view
+  res.render('about', {
+    title: 'Aboutr',
+    user: null,
+    isError: false
+  });
+});
+
 /* GET register */
 router.get('/register', function(req, res, next) {
   // load the register.ejs view

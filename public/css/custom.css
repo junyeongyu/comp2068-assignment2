@@ -22,3 +22,18 @@ a.btn-register{color:#fff;}
 .panel td.row {
   cursor: pointer;
 }
+
+/* detail */
+.detail .form-group > * {
+  padding: 3px;
+}
+
+/* about */
+.my_twitter {
+  color: #FFF;
+}
+
+/* footer */
+.credits {
+  margin: 2%;
+}

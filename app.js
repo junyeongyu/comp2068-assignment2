@@ -53,7 +53,7 @@ app.use(passport.session());
 let User = require('./models/user');
 passport.use(User.createStrategy());
 
-// facebook auth
+// facebook auth - change callback url based on deployment state
 passport.use(new FacebookStrategy({
     clientID: config.facebook.clientID,
     clientSecret: config.facebook.clientSecret,
@@ -109,7 +109,7 @@ app.use(function(err, req, res, next) {
 app.locals.moment = moment; // this makes moment available as a variable in every EJS page
 app.locals.shortDateFormat = 'YYYY-MM-DD';
 
-// Default error rendering
+// Default error rendering - provide proper error page
 function renderError(req, res, err) {
   console.log(err);
   res.render('error', {

@@ -84,7 +84,7 @@ router.get('/detail/:_id', function(req, res, next) {
         return renderError(req, res, err);
       }
       
-      saleItem.view = saleItem.view + 1;
+      saleItem.view = saleItem.view + 1; // add view count
       saleItem.update(saleItem,  function(err) {
         if (err) {
           return renderError(req, res, err);

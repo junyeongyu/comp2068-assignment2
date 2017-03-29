@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* GET about */
+/* GET about : introduction of service and a member */
 router.get('/about', function(req, res, next) {
   // load the register.ejs view
   res.render('about', {
@@ -23,7 +23,7 @@ router.get('/about', function(req, res, next) {
   });
 });
 
-/* GET register */
+/* GET register - register form to regist */
 router.get('/register', function(req, res, next) {
   // load the register.ejs view
   res.render('register', {
@@ -33,9 +33,9 @@ router.get('/register', function(req, res, next) {
   });
 });
 
-/* POST register */
+/* POST register - to register new user infomation to use crud service */
 router.post('/register', function(req, res, next) {
-  // use the Account model to create a new user account
+  // use the User model to create a new user account
   User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
     if (err) {
       if (err.name) {
@@ -56,7 +56,7 @@ router.post('/register', function(req, res, next) {
   });
 });
 
-/* GET login */
+/* GET login - provide login page */
 router.get('/login', function(req, res, next) {
   let messages = req.session.messages || [];
   req.session.messages = []; // clear messages from session
@@ -67,14 +67,14 @@ router.get('/login', function(req, res, next) {
   });
 });
 
-/* POST login */
+/* POST login - execute login process */
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
   failureMessage: 'Username or password is incorrect'
 }));
 
-/* GET logout */
+/* GET logout - logout service but still public sevice can be used */
 router.get('/logout', function(req, res, next) {
   req.logout();
   res.redirect('/');
